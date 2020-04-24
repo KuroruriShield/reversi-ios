@@ -21,7 +21,7 @@ public class ReversiBoard {
     /// 盤のセルの `y` の範囲を返します。
     public let yRange: Range<Int>
     
-    public var board: Array<Disk?>
+    private var board: Array<Disk?>
     
     public init(width: Int = 8, height: Int = 8) {
         precondition(width % 2 == 0 && width > 0)
