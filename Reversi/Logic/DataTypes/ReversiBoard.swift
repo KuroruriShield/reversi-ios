@@ -8,24 +8,46 @@
 
 import Foundation
 
-typealias ReversiBoard = [Disk?]
-
-public extension ReversiBoard {
-    /// 盤の幅（ `8` ）を表します。
-    var width: Int { 8 }
+public class ReversiBoard {
+    /// 盤の幅を表します。
+    public let width: Int
     
-    /// 盤の高さ（ `8` ）を返します。
-    var height: Int { 8 }
+    /// 盤の高さを返します。
+    public let height: Int
     
-    /// 盤のセルの `x` の範囲（ `0 ..< 8` ）を返します。
-    var xRange: Range<Int> { 0 ..< width }
+    /// 盤のセルの `x` の範囲を返します。
+    public let xRange: Range<Int>
     
-    /// 盤のセルの `y` の範囲（ `0 ..< 8` ）を返します。
-    var yRange: Range<Int> { 0 ..< height }
+    /// 盤のセルの `y` の範囲を返します。
+    public let yRange: Range<Int>
     
-    func diskAt(x: Int, y: Int) -> Disk? {
-        guard xRange.contains(x) && yRange.contains(y) else { return nil }
-        return self[y * width + x]
+    public var board: Array<Disk?>
+    
+    public init(width: Int = 8, height: Int = 8) {
+        precondition(width % 2 == 0 && width > 0)
+        precondition(height % 2 == 0 && height > 0)
+        
+        self.width = width
+        self.height = height
+        xRange = 0..<width
+        yRange = 0..<height
+        
+        board = Array<Disk?>(repeating: nil, count: width * height)
+        setDisk(.light, atX: width / 2 - 1, y: height / 2 - 1)
+        setDisk(.dark, atX: width / 2, y: height / 2 - 1)
+        setDisk(.dark, atX: width / 2 - 1, y: height / 2)
+        setDisk(.light, atX: width / 2, y: height / 2)
     }
-
+    
+    public func diskAt(x: Int, y: Int) -> Disk? {
+        guard xRange.contains(x) && yRange.contains(y) else { return nil }
+        return board[y * width + x]
+    }
+    
+    public func setDisk(_ disk: Disk, atX x: Int, y: Int) {
+        precondition(xRange.contains(x) && yRange.contains(y), "Outside")
+        precondition(board[x*y] == nil, "Disk exist")
+        board[x*y] = disk
+    }
+    
 }
