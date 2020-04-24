@@ -19,6 +19,7 @@
 		D642BDDC23AA137C00396732 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642BDDB23AA137C00396732 /* BoardView.swift */; };
 		E393CEB92453132300BE7A2A /* Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = E393CEB82453132300BE7A2A /* Disk.swift */; };
 		E393CEBB2453138900BE7A2A /* ReversiBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E393CEBA2453138900BE7A2A /* ReversiBoard.swift */; };
+		E393CEBF245330C100BE7A2A /* ReversiBoardTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E393CEBE245330C100BE7A2A /* ReversiBoardTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		D642BDDB23AA137C00396732 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		E393CEB82453132300BE7A2A /* Disk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disk.swift; sourceTree = "<group>"; };
 		E393CEBA2453138900BE7A2A /* ReversiBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversiBoard.swift; sourceTree = "<group>"; };
+		E393CEBE245330C100BE7A2A /* ReversiBoardTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversiBoardTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				D642BDCA23A9FE4700396732 /* ReversiTests.swift */,
+				E393CEBD245330A400BE7A2A /* Logic */,
 				D642BDCC23A9FE4700396732 /* Info.plist */,
 			);
 			path = ReversiTests;
@@ -136,6 +139,14 @@
 				E393CEBA2453138900BE7A2A /* ReversiBoard.swift */,
 			);
 			path = DataTypes;
+			sourceTree = "<group>";
+		};
+		E393CEBD245330A400BE7A2A /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				E393CEBE245330C100BE7A2A /* ReversiBoardTest.swift */,
+			);
+			path = Logic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D642BDCB23A9FE4700396732 /* ReversiTests.swift in Sources */,
+				E393CEBF245330C100BE7A2A /* ReversiBoardTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
