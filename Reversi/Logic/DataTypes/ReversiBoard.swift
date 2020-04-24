@@ -34,9 +34,9 @@ public class ReversiBoard {
         
         board = Array<Disk?>(repeating: nil, count: width * height)
         setDisk(.light, atX: width / 2 - 1, y: height / 2 - 1)
-        setDisk(.dark, atX: width / 2, y: height / 2 - 1)
-        setDisk(.dark, atX: width / 2 - 1, y: height / 2)
-        setDisk(.light, atX: width / 2, y: height / 2)
+        setDisk(.dark,  atX: width / 2,     y: height / 2 - 1)
+        setDisk(.dark,  atX: width / 2 - 1, y: height / 2)
+        setDisk(.light, atX: width / 2,     y: height / 2)
     }
     
     public func diskAt(x: Int, y: Int) -> Disk? {
