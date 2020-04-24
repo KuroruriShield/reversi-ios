@@ -26,6 +26,8 @@ class ViewController: UIViewController {
     
     private var playerCancellers: [Disk: Canceller] = [:]
     
+    private var board: ReversiBoard = ReversiBoard()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,7 +62,7 @@ extension ViewController {
         
         for y in boardView.yRange {
             for x in boardView.xRange {
-                if boardView.diskAt(x: x, y: y) == side {
+                if board.diskAt(x: x, y: y) == side {
                     count +=  1
                 }
             }
@@ -94,7 +96,7 @@ extension ViewController {
             (x: -1, y:  1),
         ]
         
-        guard boardView.diskAt(x: x, y: y) == nil else {
+        guard board.diskAt(x: x, y: y) == nil else {
             return []
         }
         
@@ -109,7 +111,7 @@ extension ViewController {
                 x += direction.x
                 y += direction.y
                 
-                switch (disk, boardView.diskAt(x: x, y: y)) { // Uses tuples to make patterns exhaustive
+                switch (disk, board.diskAt(x: x, y: y)) { // Uses tuples to make patterns exhaustive
                 case (.dark, .some(.dark)), (.light, .some(.light)):
                     diskCoordinates.append(contentsOf: diskCoordinatesInLine)
                     break flipping
@@ -419,7 +421,7 @@ extension ViewController {
         
         for y in boardView.yRange {
             for x in boardView.xRange {
-                output += boardView.diskAt(x: x, y: y).symbol
+                output += board.diskAt(x: x, y: y).symbol
             }
             output += "\n"
         }
