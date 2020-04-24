@@ -26,6 +26,8 @@ class ViewController: UIViewController {
     
     private var playerCancellers: [Disk: Canceller] = [:]
     
+    private var board: ReversiBoard = ReversiBoard()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,7 +62,7 @@ extension ViewController {
         
         for y in boardView.yRange {
             for x in boardView.xRange {
-                if boardView.diskAt(x: x, y: y) == side {
+                if board.diskAt(x: x, y: y) == side {
                     count +=  1
                 }
             }
@@ -94,7 +96,7 @@ extension ViewController {
             (x: -1, y:  1),
         ]
         
-        guard boardView.diskAt(x: x, y: y) == nil else {
+        guard board.diskAt(x: x, y: y) == nil else {
             return []
         }
         
@@ -109,7 +111,7 @@ extension ViewController {
                 x += direction.x
                 y += direction.y
                 
-                switch (disk, boardView.diskAt(x: x, y: y)) { // Uses tuples to make patterns exhaustive
+                switch (disk, board.diskAt(x: x, y: y)) { // Uses tuples to make patterns exhaustive
                 case (.dark, .some(.dark)), (.light, .some(.light)):
                     diskCoordinates.append(contentsOf: diskCoordinatesInLine)
                     break flipping
@@ -181,8 +183,10 @@ extension ViewController {
         } else {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
+                self.board.setDisk(disk, atX: x, y: y)
                 self.boardView.setDisk(disk, atX: x, y: y, animated: false)
                 for (x, y) in diskCoordinates {
+                    self.board.setDisk(disk, atX: x, y: y)
                     self.boardView.setDisk(disk, atX: x, y: y, animated: false)
                 }
                 completion?(true)
@@ -205,6 +209,7 @@ extension ViewController {
         }
         
         let animationCanceller = self.animationCanceller!
+        board.setDisk(disk, atX: x, y: y)
         boardView.setDisk(disk, atX: x, y: y, animated: true) { [weak self] isFinished in
             guard let self = self else { return }
             if animationCanceller.isCancelled { return }
@@ -225,6 +230,7 @@ extension ViewController {
 extension ViewController {
     /// ゲームの状態を初期化し、新しいゲームを開始します。
     func newGame() {
+        board = ReversiBoard()
         boardView.reset()
         turn = .dark
         
@@ -419,7 +425,7 @@ extension ViewController {
         
         for y in boardView.yRange {
             for x in boardView.xRange {
-                output += boardView.diskAt(x: x, y: y).symbol
+                output += board.diskAt(x: x, y: y).symbol
             }
             output += "\n"
         }
@@ -472,6 +478,7 @@ extension ViewController {
                 var x = 0
                 for character in line {
                     let disk = Disk?(symbol: "\(character)").flatMap { $0 }
+                    board.setDisk(disk, atX: x, y: y)
                     boardView.setDisk(disk, atX: x, y: y, animated: false)
                     x += 1
                 }

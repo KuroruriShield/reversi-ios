@@ -111,7 +111,7 @@ public class BoardView: UIView {
                 setDisk(nil, atX: x, y: y, animated: false)
             }
         }
-        
+
         setDisk(.light, atX: width / 2 - 1, y: height / 2 - 1, animated: false)
         setDisk(.dark, atX: width / 2, y: height / 2 - 1, animated: false)
         setDisk(.dark, atX: width / 2 - 1, y: height / 2, animated: false)
@@ -121,15 +121,6 @@ public class BoardView: UIView {
     private func cellViewAt(x: Int, y: Int) -> CellView? {
         guard xRange.contains(x) && yRange.contains(y) else { return nil }
         return cellViews[y * width + x]
-    }
-    
-    /// `x`, `y` で指定されたセルの状態を返します。
-    /// セルにディスクが置かれていない場合、 `nil` が返されます。
-    /// - Parameter x: セルの列です。
-    /// - Parameter y: セルの行です。
-    /// - Returns: セルにディスクが置かれている場合はそのディスクの値を、置かれていない場合は `nil` を返します。
-    public func diskAt(x: Int, y: Int) -> Disk? {
-        cellViewAt(x: x, y: y)?.disk
     }
     
     /// `x`, `y` で指定されたセルの状態を、与えられた `disk` に変更します。
