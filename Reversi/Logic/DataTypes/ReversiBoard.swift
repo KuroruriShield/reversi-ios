@@ -48,7 +48,7 @@ public class ReversiBoard {
         precondition(xRange.contains(x) && yRange.contains(y), "Outside")
         // FIXME: 本当はゲーム中に石の上書きはできないが、ゲームのロードに使ってるので一時的に許可してる
         // precondition(board[x*y] == nil, "Disk exist")
-        board[y*x] = disk
+        board[y * width + x] = disk
     }
     
 }
