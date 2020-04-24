@@ -105,18 +105,18 @@ public class BoardView: UIView {
     }
     
     /// 盤をゲーム開始時に状態に戻します。このメソッドはアニメーションを伴いません。
-    public func reset() {
-        for y in  yRange {
-            for x in xRange {
-                setDisk(nil, atX: x, y: y, animated: false)
-            }
-        }
-        
-        setDisk(.light, atX: width / 2 - 1, y: height / 2 - 1, animated: false)
-        setDisk(.dark, atX: width / 2, y: height / 2 - 1, animated: false)
-        setDisk(.dark, atX: width / 2 - 1, y: height / 2, animated: false)
-        setDisk(.light, atX: width / 2, y: height / 2, animated: false)
-    }
+//    public func reset() {
+//        for y in  yRange {
+//            for x in xRange {
+//                setDisk(nil, atX: x, y: y, animated: false)
+//            }
+//        }
+//
+//        setDisk(.light, atX: width / 2 - 1, y: height / 2 - 1, animated: false)
+//        setDisk(.dark, atX: width / 2, y: height / 2 - 1, animated: false)
+//        setDisk(.dark, atX: width / 2 - 1, y: height / 2, animated: false)
+//        setDisk(.light, atX: width / 2, y: height / 2, animated: false)
+//    }
     
     private func cellViewAt(x: Int, y: Int) -> CellView? {
         guard xRange.contains(x) && yRange.contains(y) else { return nil }
