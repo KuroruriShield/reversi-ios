@@ -133,12 +133,12 @@ public class BoardView: UIView {
     /// - Parameter completion: アニメーションの完了通知を受け取るハンドラーです。
     ///     `animated` に `false` が指定された場合は状態が変更された後で即座に同期的に呼び出されます。
     ///     ハンドラーが受け取る `Bool` 値は、 `UIView.animate()`  等に準じます。
-//    public func setDisk(_ disk: Disk?, atX x: Int, y: Int, animated: Bool, completion: ((Bool) -> Void)? = nil) {
-//        guard let cellView = cellViewAt(x: x, y: y) else {
-//            preconditionFailure() // FIXME: Add a message.
-//        }
-//        cellView.setDisk(disk, animated: animated, completion: completion)
-//    }
+    public func setDisk(_ disk: Disk?, atX x: Int, y: Int, animated: Bool, completion: ((Bool) -> Void)? = nil) {
+        guard let cellView = cellViewAt(x: x, y: y) else {
+            preconditionFailure() // FIXME: Add a message.
+        }
+        cellView.setDisk(disk, animated: animated, completion: completion)
+    }
 }
 
 public protocol BoardViewDelegate: AnyObject {
