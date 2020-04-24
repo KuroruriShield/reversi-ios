@@ -44,7 +44,7 @@ public class ReversiBoard {
         return board[y * width + x]
     }
     
-    public func setDisk(_ disk: Disk, atX x: Int, y: Int) {
+    public func setDisk(_ disk: Disk?, atX x: Int, y: Int) {
         precondition(xRange.contains(x) && yRange.contains(y), "Outside")
         precondition(board[x*y] == nil, "Disk exist")
         board[x*y] = disk

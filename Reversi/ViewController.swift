@@ -183,8 +183,10 @@ extension ViewController {
         } else {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
+                self.board.setDisk(disk, atX: x, y: y)
                 self.boardView.setDisk(disk, atX: x, y: y, animated: false)
                 for (x, y) in diskCoordinates {
+                    self.board.setDisk(disk, atX: x, y: y)
                     self.boardView.setDisk(disk, atX: x, y: y, animated: false)
                 }
                 completion?(true)
@@ -207,6 +209,7 @@ extension ViewController {
         }
         
         let animationCanceller = self.animationCanceller!
+        board.setDisk(disk, atX: x, y: y)
         boardView.setDisk(disk, atX: x, y: y, animated: true) { [weak self] isFinished in
             guard let self = self else { return }
             if animationCanceller.isCancelled { return }
@@ -474,6 +477,7 @@ extension ViewController {
                 var x = 0
                 for character in line {
                     let disk = Disk?(symbol: "\(character)").flatMap { $0 }
+                    board.setDisk(disk, atX: x, y: y)
                     boardView.setDisk(disk, atX: x, y: y, animated: false)
                     x += 1
                 }
