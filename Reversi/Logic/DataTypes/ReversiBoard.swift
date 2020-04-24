@@ -46,7 +46,8 @@ public class ReversiBoard {
     
     public func setDisk(_ disk: Disk?, atX x: Int, y: Int) {
         precondition(xRange.contains(x) && yRange.contains(y), "Outside")
-        precondition(board[x*y] == nil, "Disk exist")
+        // FIXME: 本当はゲーム中に石の上書きはできないが、ゲームのロードに使ってるので一時的に許可してる
+        // precondition(board[x*y] == nil, "Disk exist")
         board[x*y] = disk
     }
     
