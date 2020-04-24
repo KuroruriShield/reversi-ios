@@ -41,14 +41,18 @@ public class ReversiBoard {
     
     public func diskAt(x: Int, y: Int) -> Disk? {
         guard xRange.contains(x) && yRange.contains(y) else { return nil }
-        return board[y * width + x]
+        return board[arrayIndexAt(x: x, y: y)]
     }
     
     public func setDisk(_ disk: Disk?, atX x: Int, y: Int) {
         precondition(xRange.contains(x) && yRange.contains(y), "Outside")
         // FIXME: 本当はゲーム中に石の上書きはできないが、ゲームのロードに使ってるので一時的に許可してる
         // precondition(board[x*y] == nil, "Disk exist")
-        board[y * width + x] = disk
+        board[arrayIndexAt(x: x, y: y)] = disk
+    }
+    
+    private func arrayIndexAt(x: Int, y: Int) -> Int {
+        return y * width + x
     }
     
 }
